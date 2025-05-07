@@ -2,7 +2,6 @@ import zipfile
 from pathlib import Path
 
 # Back-end (Flask) code for enhanced Excel-to-SQLite API
-app_py = """
 import os 
 import sqlite3
 import pandas as pd
@@ -83,8 +82,9 @@ def upload_excel_to_sqlite():
 
 
 if __name__ == "__main__":
-    from os import environ
-    port = int(environ.get("PORT", 10000))
+    import os
+    port = int(os.environ.get("PORT", 10000))
     app.run(host="0.0.0.0", port=port)
-    """ .strip()
+
+
 
