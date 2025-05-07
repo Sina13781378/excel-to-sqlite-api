@@ -69,5 +69,4 @@ def get_table_columns(conn, table):
     return [row[1] for row in cursor.fetchall()]
 
 if __name__ == '__main__':
-    app.run(debug=True)
     app.run(host='0.0.0.0', port=10000)
