@@ -5,10 +5,13 @@ from pathlib import Path
 import os 
 import sqlite3
 import pandas as pd
+import json
 from flask import Flask, request, jsonify, send_file
 from werkzeug.utils import secure_filename
 from tempfile import NamedTemporaryFile
+from flask_cors import CORS
 
+CORS(app)
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'uploads'
 os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
@@ -51,7 +54,12 @@ def upload_excel_to_sqlite():
         db_path = temp_db.name
         temp_db.close()
 
-    append_conditions = eval(append_conditions)
+
+    try:
+        append_conditions = json.loads(append_conditions)
+    except Exception as e:
+        return jsonify({'error': f'Invalid JSON: {str(e)}'}), 400
+        
     conn = sqlite3.connect(db_path)
     excel_data = pd.read_excel(excel_path, sheet_name=None)
 
