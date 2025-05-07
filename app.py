@@ -84,16 +84,3 @@ def upload_excel_to_sqlite():
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=10000)
 """.strip()
-
-# Requirements for the app
-requirements_txt = "flask\npandas\nopenpyxl"
-
-# ZIP output path
-zip_output = "/mnt/data/excel_sqlite_api_enhanced.zip"
-
-# Write files to zip
-with zipfile.ZipFile(zip_output, 'w') as zipf:
-    zipf.writestr("app.py", app_py)
-    zipf.writestr("requirements.txt", requirements_txt)
-
-zip_output
