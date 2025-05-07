@@ -11,8 +11,9 @@ from werkzeug.utils import secure_filename
 from tempfile import NamedTemporaryFile
 from flask_cors import CORS
 
-CORS(app)
 app = Flask(__name__)
+CORS(app)
+
 app.config['UPLOAD_FOLDER'] = 'uploads'
 os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 
