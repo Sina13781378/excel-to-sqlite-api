@@ -81,6 +81,7 @@ def upload_excel_to_sqlite():
     conn.close()
     return send_file(db_path, as_attachment=True, download_name="updated_data.db")
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=10000)
-""".strip()
+if __name__ == "__main__":
+    from os import environ
+    port = int(environ.get("PORT", 10000))
+    app.run(host="0.0.0.0", port=port)
